@@ -135,27 +135,96 @@
             function pyramidOfCoolNumbers()
             {
                 var blocks = 1;
-                var rowMax = 4;
-                for(rows = 1; rows < rowMax; rows++)
+                var rowMax = 4; // draw 4 rows total
+                var rowCurrent = rowMax;
+                for(rows = 1; rows <= rowMax; rows++)
                 {
                     var rowText = "";
-                    for(columns = rowMax; columns > 0; columns--) // column spaces
+                    for(columns = rowCurrent; columns > 0; columns--) // column spaces
                     {
                         rowText += " ";
                     }
-                    for(textCount = rows+2; textCount > 0; textCount--) // column text
+                    for(textCount = rows; textCount > 0; textCount--) // column text
                     {
-                        rowText += blocks;
+                        rowText += blocks += " ";
                         blocks++;
                     }
-                    rowMax--;
                     appendText(rowText);
+                    rowCurrent--;
                 }
+            }
+            function doWhile(){
+                var counter = 5;
+                do {
+                    appendText("Done: "  + counter);
+
+                } while(counter--);
+            }
+
+            function conditional(){
+                var test = false;
+                if(test) {
+                    appendText("True");
+                } else {
+                    appendText("False");
+                }
+
+                var value = 'aaaaaaaaaaaaaa';
+
+                switch(value) {
+                    case "a":
+                        appendText("I got an A!!!");
+                        break;
+                    case "b":
+                        appendText("I got an B!");
+                        break;
+                    default:
+                        appendText("ERROR");
+                }
+            }
+
+            function myFirstObject(){
+                var star = {};
+                star["Polaris"] = new Object;
+                star["Bacon"] = new Object;
+                star["Polaris"].constellation = "Ursa Minor";
+                star["Polaris"].mag = 2.0;
+                /*
+                for(var propt in star)
+                {
+                    alert(propt);
+                }
+                for(var propt in document)
+                {
+                    alert(propt);
+                }
+                */
+                var myArray = new Array();
+                myArray[0] = "Hamburger";
+                myArray[3] = "Canadian Bacon";
+                //appendText(myArray.length);
+                myArray.push("New Data");
+                //appendText(myArray.length);
+                myArray.pop();
+                //appendText(myArray.length);
+
+                var array2 = [ "zero", "one", "two", "three", "four", "five" ];
+
+                var array3 = array2.splice(2,3);
+
+                var myDate = new Date();
+                appendText(myDate);
+                appendText(myDate.getMilliseconds());
+
+                var cookieName = "testCookie";
+                var cookieValue = "testvalue";
+                var myFirstCookie = cookieName + "=" + cookieValue;
+                document.cookie = myFirstCookie;
             }
         </script>
     </head>
     <body>
-        <button onClick="pyramidOfCoolNumbers()">Go</button>
+        <button onClick="myFirstObject()">Go</button>
         <pre id="console"></pre>
     </body>
 </html>
