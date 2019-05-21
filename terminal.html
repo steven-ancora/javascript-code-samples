@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function appendText(text){
+               document.getElementById("console").innerHTML += text += '\n';
+            }
+            function natural(){
+                for(i=1; i<11; i++)
+                {
+                    appendText(i);
+                }
+            }
+            function naturalSum(){
+                var sum = 0;
+                for(i=1; i<11; i++)
+                {
+                    appendText(i);
+                    sum += i;
+                }
+                appendText("The Sum is : " + sum);
+            }
+
+            // Math.pow( );
+            // 1 : 1
+            // 2 : 8
+            function cube(){
+                for(i=1; i<100; i++)
+                {
+                    var cube = Math.pow(i, 3);
+                    appendText(i + " : " + cube);
+                }
+            }
+
+            // 1  x  1 = 1
+            // 1  x  2 = 2 ...
+            function multTable(){
+                for(i=1; i <= 12; i++)         // controls lines
+                {
+                    for(j=1; j <= 12; j++)
+                    {
+                        var mult = i * j;
+                        appendText(i + "  x  " + j + " = " + mult);
+                    }
+                }
+            }
+
+            function starRamp(){
+                var lineCount = 0;
+                var stars = "";
+                while(lineCount < 100) {            // controls lines
+                    for(i=0; i<= lineCount; i++)    // controls column count
+                    {
+                        stars += "*";
+                    }
+                    appendText(stars);
+                    stars = "";
+                    lineCount++;
+                }
+            }
+
+            function diamond(){
+                var overallLineCount = 10;
+                var lineCount = 0;
+                var columnCount = overallLineCount + 1;
+                var stars = "";
+                while(lineCount < overallLineCount) {
+                    while(columnCount) {
+                        stars += " ";
+                        columnCount--;
+                    }
+                    columnCount = overallLineCount - lineCount;
+                    for(i=0; i<= lineCount*2; i++)    // controls column count
+                    {
+                        stars += "*";
+                    }
+                    appendText(stars);
+                    stars = "";
+                    lineCount++;
+                }
+            }
+
+            function countToTen(){
+                for(i=1; i <= 10; i++)
+                {
+                    appendText(i);
+                }
+            }
+
+            function timesTable(){
+                var header = "";
+                for(i=1; i<= 12; i++)
+                {
+                    header += "\t" + i;
+                }
+                appendText(header);
+
+                for(i=1; i<= 12; i++)           // rows
+                {
+                    var row = "";
+                    for(j=1; j <= 12; j++)      // columns
+                    {
+                        var multAns = j*i;
+                        if(j==1){
+                            row += multAns + "\t" + multAns;
+                        } else {
+                            row += "\t" + multAns;
+                        }
+                    }
+                    appendText(row);
+                    row = "";
+                }
+            }
+
+            function triNumber()
+            {
+                var calNumber = 0;
+                var rowNumber = 1;
+                var rowMax = 4;
+                while(rowNumber <= rowMax)
+                {
+                    var columns = "";
+                    calNumber = 0;
+                    while(calNumber < rowNumber) 
+                    {
+                        calNumber++;
+                        columns += calNumber;
+                    }
+                    appendText(columns);
+                    columns = "";
+                    rowNumber++
+                }
+            }
+
+            function pyramidOfCoolNumbers()
+            {
+                var blocks = 1;
+                var rowMax = 4;
+                for(rows = 1; rows < rowMax; rows++)
+                {
+                    var rowText = "";
+                    for(columns = rowMax; columns > 0; columns--) // column spaces
+                    {
+                        rowText += " ";
+                    }
+                    for(textCount = rows+2; textCount > 0; textCount--) // column text
+                    {
+                        rowText += blocks;
+                        blocks++;
+                    }
+                    rowMax--;
+                    appendText(rowText);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <button onClick="pyramidOfCoolNumbers()">Go</button>
+        <pre id="console"></pre>
+    </body>
+</html>

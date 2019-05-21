@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function validateForm(){
+                var errors = 0;
+                errors += testFirstName();
+                errors += testLastName();
+                errors += testAge();
+                errors += testEmail();
+                if(errors > 0 ) { return false; }
+            }
+            function testFirstName(){
+                let fname = document.getElementById("fname");
+                if( fname.value == "") {
+                    let fname_error = document.getElementById("fname_error");
+                    fname_error.innerHTML = "First Name is empty";
+                    return 1;
+                }
+                return 0;
+            }
+            function testLastName(){
+                let lname = document.getElementById("lname");
+                if( lname.value == "") {
+                    let lname_error = document.getElementById("lname_error");
+                    lname_error.innerHTML = "Last Name is empty";
+                    return 1;
+                }
+                return 0;
+            }
+            function testAge(){
+                let age = document.getElementById("age");
+                if(age.value == "") {
+                    let age_error = document.getElementById("age_error");
+                    age_error.innerHTML = "Age has not been selected";
+                    return 1;
+                }
+                return 0;
+            }
+
+            function testEmail(){
+                //      .com .net .org
+                //    account@domain.tld
+                var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                let email = document.getElementById("email").value;
+                console.log(re.test(String(email).toLowerCase()));
+                console.log('The value of lastIndex is ' + re.lastIndex);
+            }
+
+        </script>
+        <style>
+            .error_div {
+                color: #f00;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Registration</h1>
+    <form method="POST" action="registration.html" onsubmit="return validateForm(this);">
+            First Name: <input name="fname" id="fname" type="text">
+            <div id="fname_error" class="error_div"></div><br>
+            Last Name: <input name="lname" id="lname" type="text">
+            <div id="lname_error" class="error_div"></div><br>
+            Age Group:  <select name="age" id="age">
+                        <option></option>
+                        <option value="0">18 - 25</option>
+                        <option value="1">26 - 35</option>
+                        <option value="2">36 - 45</option>
+                        <option value="3">Super Old</option>
+                    </select>
+                    <div id="age_error" class="error_div"></div>
+                    <br>
+            Email: <input name="email" id="email" type="text"><br>
+            <button type="submit">Register</button>
+        </form>
+    </body>
+</html>
